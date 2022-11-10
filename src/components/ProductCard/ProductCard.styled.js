@@ -6,6 +6,7 @@ export const ProductCardContainer = styled.article`
     margin-right: 8px;
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
 
     > div {
         padding: 8px;
@@ -26,5 +27,13 @@ export const ProductCardContainer = styled.article`
         button {
             padding: 4px;
         }
+    }
+
+    .cart-card-delete-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #ff5c5c;
+        color: white;
     }
 `

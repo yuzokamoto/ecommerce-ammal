@@ -6,7 +6,8 @@ function CartScreen(props) {
     const {
         cart,
         increaseQuantityInCart,
-        decreaseQuantityInCart
+        decreaseQuantityInCart,
+        deleteFromCart
     } = props
 
     const total = cart.reduce(
@@ -26,6 +27,7 @@ function CartScreen(props) {
                             isOnCartScreen={true}
                             increaseQuantityInCart={increaseQuantityInCart}
                             decreaseQuantityInCart={decreaseQuantityInCart}
+                            deleteFromCart={deleteFromCart}
                         />
                 ))}
             </section>

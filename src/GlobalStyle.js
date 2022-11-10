@@ -16,4 +16,15 @@ export const GlobalStyle = createGlobalStyle`
         max-width: 1200px;
         margin: 0 auto;
     }
+
+    button {
+        :hover {
+            cursor: pointer;
+            filter: brightness(0.95);
+        }
+
+        :active {
+            filter: brightness(0.85);
+        }
+    }
 `

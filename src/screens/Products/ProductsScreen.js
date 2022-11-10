@@ -4,12 +4,12 @@ import { Main } from "./ProductsScreen.styled"
 
 function ProductsScreen(props) {
 
-    const { addToCart } = props
-
-    // digitei x no campo de busca
+    const { addToCart, filterText } = props
 
     const filterProductsByText = () => {
-        return products.filter((product) => product.name.includes("x"))
+        return products.filter(
+            (product) => product.name.toLowerCase().includes(filterText.toLowerCase())
+        )
     }
 
     return (
@@ -18,9 +18,7 @@ function ProductsScreen(props) {
                 <h1>Products</h1>
                 <hr />
                 {
-                    products
-                    // .filter((product) => product.name.toLowerCase().includes("a".toLowerCase()))
-                    // .filter((product) => product.price <= 499)
+                    filterProductsByText()
                     .map((product) => (
                         <ProductCard
                             product={product}

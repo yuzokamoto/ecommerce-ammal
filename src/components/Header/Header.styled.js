@@ -26,4 +26,21 @@ export const HeaderContainer = styled.header`
             filter: brightness(0.95);
         }
     }
+
+    .cart-btn {
+        position: relative;
+    }
+
+    .cart-badge {
+        position: absolute;
+        top: 10%;
+        right: 10%;
+        border-radius: 50%;
+        background-color: white;
+        height: 18px;
+        width: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `

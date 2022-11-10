@@ -4,7 +4,13 @@ import productIcon from "../../assets/product.svg"
 import cartIcon from "../../assets/cart.svg"
 
 function Header(props) {
-    const { goToCartScreen, goToProductsScreen } = props
+    const {
+        goToCartScreen,
+        goToProductsScreen,
+        itemsInCart,
+        filterText,
+        onChangeFilterText
+    } = props
 
     return (
         <HeaderContainer>
@@ -13,7 +19,11 @@ function Header(props) {
             </a>
 
             <div>
-                <input placeholder="Search" />
+                <input
+                    placeholder="Search"
+                    value={filterText}
+                    onChange={onChangeFilterText}  
+                />
                 <button>
                     <img src={searchIcon} alt="Search icon" />
                 </button>
@@ -24,8 +34,12 @@ function Header(props) {
                     <img src={productIcon} alt="Product icon" />
                 </button>
 
-                <button onClick={goToCartScreen}>
+                <button onClick={goToCartScreen} className="cart-btn">
                     <img src={cartIcon} alt="Cart icon" />
+                    {
+                        itemsInCart > 0
+                        && <span className="cart-badge">{itemsInCart}</span>
+                    }
                 </button>
             </div>
         </HeaderContainer>

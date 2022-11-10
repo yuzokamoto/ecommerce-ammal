@@ -8,7 +8,8 @@ function ProductCard(props) {
         isOnProductsScreen,
         isOnCartScreen,
         increaseQuantityInCart,
-        decreaseQuantityInCart
+        decreaseQuantityInCart,
+        deleteFromCart
     } = props
 
     return (
@@ -44,7 +45,16 @@ function ProductCard(props) {
                     }
                     {
                         isOnCartScreen
-                        && <span>x{product.quantity}</span>
+                        && <span>Qtd: {product.quantity}</span>
+                    }
+                    {
+                        isOnCartScreen
+                        && <button
+                            className="cart-card-delete-btn"
+                            onClick={() => deleteFromCart(product)}
+                        >
+                            x
+                        </button>
                     }
                 </div>
             </div>

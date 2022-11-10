@@ -9,6 +9,8 @@ function App() {
 
     const [ cart, setCart ] = useState([])
 
+    const [ filterText, setFilterText ] = useState("")
+
     const goToProductsScreen = () => {
         setActiveScreen("ProductsScreen")
     }
@@ -58,15 +60,34 @@ function App() {
         setCart(newCart)
     }
 
+    const deleteFromCart = (productToDelete) => {
+        const newCart = [...cart]
+
+        const indexFound = newCart.findIndex(
+            (productInCart) => productInCart.id === productToDelete.id
+        )
+
+        newCart.splice(indexFound, 1)
+        setCart(newCart)
+    }
+
+    const onChangeFilterText = (e) => {
+        setFilterText(e.target.value)
+    }
+
     const renderScreen = () => {
         switch (activeScreen) {
             case "ProductsScreen":
-                return <ProductsScreen addToCart={addToCart} />
+                return <ProductsScreen
+                    addToCart={addToCart}
+                    filterText={filterText}
+                />
             case "CartScreen":
                 return <CartScreen
                     cart={cart}
                     increaseQuantityInCart={increaseQuantityInCart}
                     decreaseQuantityInCart={decreaseQuantityInCart}
+                    deleteFromCart={deleteFromCart}
                 />
             default:
                 return <div>Tela não existe</div>
@@ -79,6 +100,8 @@ function App() {
                 goToProductsScreen={goToProductsScreen}
                 goToCartScreen={goToCartScreen}
                 itemsInCart={cart.length}
+                filterText={filterText}
+                onChangeFilterText={onChangeFilterText}
             />
             {renderScreen()}
         </>
