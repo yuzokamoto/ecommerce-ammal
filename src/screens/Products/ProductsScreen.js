@@ -1,4 +1,6 @@
 import products from "../../assets/products.json"
+import ProductCard from "../../components/ProductCard/ProductCard"
+import { Main } from "./ProductsScreen.styled"
 
 function ProductsScreen(props) {
 
@@ -9,16 +11,20 @@ function ProductsScreen(props) {
     }
 
     return (
-        <div>
-            {
-                products
-                // .filter((product) => product.name.toLowerCase().includes("a".toLowerCase()))
-                // .filter((product) => product.price <= 499)
-                .map((product) => (
-                    <p>{product.name}</p>
-                ))
-            }
-        </div>
+        <Main>
+            <section>
+                <h1>Products</h1>
+                <hr />
+                {
+                    products
+                    // .filter((product) => product.name.toLowerCase().includes("a".toLowerCase()))
+                    // .filter((product) => product.price <= 499)
+                    .map((product) => (
+                        <ProductCard product={product} key={product.id} />
+                    ))
+                }
+            </section>
+        </Main>
     )
 }
 
