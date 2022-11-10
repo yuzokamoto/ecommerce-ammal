@@ -1,16 +1,15 @@
+import { priceFormatter } from "../../utils/priceFormatter"
 import { ProductCardContainer } from "./ProductCard.styled"
-
-const priceFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  
-    // These options are needed to round to whole numbers if that's what you want.
-    minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-    maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-  });
   
 function ProductCard(props) {
-    const { product } = props
+    const {
+        product,
+        addToCart,
+        isOnProductsScreen,
+        isOnCartScreen,
+        increaseQuantityInCart,
+        decreaseQuantityInCart
+    } = props
 
     return (
         <ProductCardContainer>
@@ -22,7 +21,31 @@ function ProductCard(props) {
                 </div>
                 <div className="card-price-and-cart-action">
                     <span>{priceFormatter.format(product.price)}</span>
-                    <button>+ Add to cart</button>
+                    {
+                        isOnCartScreen && product.quantity > 1
+                        && <button
+                                onClick={() => decreaseQuantityInCart(product)}
+                        >
+                            -
+                        </button> 
+                    }
+                    {
+                        isOnCartScreen
+                        && <button
+                            onClick={() => increaseQuantityInCart(product)}
+                        >
+                            +
+                        </button> 
+                    }
+
+                    {
+                        isOnProductsScreen
+                        && <button onClick={() => addToCart(product)}>+ Add to cart</button>
+                    }
+                    {
+                        isOnCartScreen
+                        && <span>x{product.quantity}</span>
+                    }
                 </div>
             </div>
         </ProductCardContainer>
